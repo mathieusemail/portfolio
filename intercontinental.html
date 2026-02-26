@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intercontinental Lyon | Mathieu Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700;800;900&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --bg-color: #d65a5a; 
+            --cream: #fdf5e6; 
+            --pop-black: #1a1a1a;
+        }
+
+        body, html { margin: 0; padding: 0; background-color: var(--bg-color); color: var(--cream); font-family: 'Outfit', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* --- BACKGROUND --- */
+        .pop-art-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .wave { position: absolute; height: 120%; width: 280px; top: -10%; background-color: var(--cream); border-left: 6px solid var(--pop-black); border-right: 6px solid var(--pop-black); background-image: radial-gradient(var(--pop-black) 18%, transparent 19%); background-size: 14px 14px; opacity: 0.85; }
+        .wave-1 { left: 8%; transform: rotate(-2deg); border-radius: 40% 60%; animation: moveWave 12s infinite ease-in-out; }
+        .wave-2 { right: 8%; width: 180px; transform: rotate(1deg); border-radius: 60% 40%; background-size: 10px 10px; animation: moveWave 15s infinite ease-in-out reverse; }
+        @keyframes moveWave { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-25px) rotate(0deg); } }
+
+        /* --- NAV --- */
+        .top-nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; z-index: 2000; background: rgba(26,26,26,0.95); box-sizing: border-box; border-bottom: 4px solid var(--pop-black); }
+        .social-links a { color: var(--cream); font-size: 18px; text-decoration: none; margin-right: 20px; transition: 0.3s; }
+        .social-links a:hover { color: var(--bg-color); }
+        .nav-links a { color: var(--cream); text-decoration: none; font-family: 'Lexend'; font-size: 12px; letter-spacing: 2px; font-weight: 700; margin-left: 30px; }
+
+        /* --- HEADER LOGO --- */
+        .project-header { padding: 120px 0 20px; text-align: center; }
+        .logo-container { display: inline-block; width: 180px; }
+        .logo-text-m { font-family: 'Lexend', sans-serif; font-size: 100px; fill: var(--cream); font-weight: 900; filter: drop-shadow(6px 6px 0px var(--pop-black)); }
+        .logo-bar-svg { fill: var(--cream); filter: drop-shadow(4px 4px 0px var(--pop-black)); }
+
+        /* --- CONTENT --- */
+        .section-container { padding: 20px 8% 80px; position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; }
+        .section-header { display: flex; align-items: center; gap: 0; margin-bottom: 50px; }
+        .title-tag { 
+            background: var(--cream); color: var(--pop-black); padding: 12px 40px; 
+            font-family: 'Lexend'; font-weight: 900; font-size: 20px; letter-spacing: 4px; 
+            border: 5px solid var(--pop-black); box-shadow: 8px 8px 0px var(--pop-black);
+            z-index: 2; text-transform: uppercase;
+        }
+        .title-line { flex-grow: 1; height: 6px; background: var(--pop-black); }
+
+        /* --- VERTICAL VIDEO GRID --- */
+        .vertical-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            margin-bottom: 80px; 
+        }
+        .video-item { 
+            background: var(--pop-black); 
+            border: 6px solid var(--pop-black); 
+            box-shadow: 10px 10px 0px var(--pop-black);
+            aspect-ratio: 9/16;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .video-item iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-item:hover { 
+            transform: scale(1.03) translateY(-10px); 
+            box-shadow: 20px 20px 0px var(--pop-black); 
+            z-index: 20;
+        }
+
+        /* --- BOUTON RETOUR --- */
+        .back-container { text-align: center; margin-top: 40px; }
+        .back-btn { 
+            display: inline-block; padding: 20px 50px; background: var(--pop-black); color: var(--cream); 
+            text-decoration: none; font-family: 'Lexend'; font-weight: 800; border: 3px solid var(--pop-black);
+            transition: 0.3s; box-shadow: 8px 8px 0px var(--cream);
+            letter-spacing: 1px;
+        }
+        .back-btn:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0px var(--cream); }
+
+        footer { padding: 40px; text-align: center; font-size: 11px; color: rgba(253,245,230,0.3); background: #000; }
+
+        @media (max-width: 900px) { .vertical-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { 
+            .vertical-grid { grid-template-columns: 1fr; }
+            .title-tag { font-size: 16px; padding: 10px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pop-art-bg"><div class="wave wave-1"></div><div class="wave wave-2"></div></div>
+
+    <nav class="top-nav">
+        <div class="social-links">
+            <a href="https://www.youtube.com/@mathieusemail1265" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mathi2u/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/mathieu-semail-57b387251" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html#travaux">RETOUR</a>
+            <a href="index.html#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="project-header">
+        <div class="logo-container">
+            <svg viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg">
+                <rect x="140" y="0" width="220" height="12" rx="6" class="logo-bar-svg"/>
+                <rect x="100" y="24" width="300" height="12" rx="6" class="logo-bar-svg"/>
+                <rect x="60" y="48" width="380" height="12" rx="6" class="logo-bar-svg"/>
+                <text x="50%" y="185" text-anchor="middle" class="logo-text-m">M</text>
+                <rect x="60" y="230" width="380" height="12" rx="6" class="logo-bar-svg"/>
+                <rect x="100" y="254" width="300" height="12" rx="6" class="logo-bar-svg"/>
+                <rect x="140" y="278" width="220" height="12" rx="6" class="logo-bar-svg"/>
+            </svg>
+        </div>
+    </div>
+
+    <section class="section-container">
+        <div class="section-header">
+            <div class="title-tag">Intercontinental Lyon</div>
+            <div class="title-line"></div>
+        </div>
+
+        <div class="vertical-grid">
+            <div class="video-item">
+                <iframe src="https://player.vimeo.com/video/1167762392?h=52e7f13c13&color=d65a5a&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://player.vimeo.com/video/1167762416?h=a9a2c24e08&color=d65a5a&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://player.vimeo.com/video/1167762449?h=b713b9ef8c&color=d65a5a&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="back-container">
+            <a href="index.html#travaux" class="back-btn">RETOUR AUX PROJETS</a>
+        </div>
+    </section>
+
+    <footer>© 2026 MATHIEU STUDIO</footer>
+</body>
+</html>

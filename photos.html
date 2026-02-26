@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographies | Mathieu Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700;800;900&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --bg-color: #d65a5a; 
+            --cream: #fdf5e6; 
+            --pop-black: #1a1a1a;
+        }
+
+        body, html { margin: 0; padding: 0; background-color: var(--bg-color); color: var(--cream); font-family: 'Outfit', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* --- BACKGROUND --- */
+        .pop-art-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .wave { position: absolute; height: 120%; width: 280px; top: -10%; background-color: var(--cream); border-left: 6px solid var(--pop-black); border-right: 6px solid var(--pop-black); background-image: radial-gradient(var(--pop-black) 18%, transparent 19%); background-size: 14px 14px; opacity: 0.85; }
+        .wave-1 { left: 8%; transform: rotate(-2deg); border-radius: 40% 60%; animation: moveWave 12s infinite ease-in-out; }
+        .wave-2 { right: 8%; width: 180px; transform: rotate(1deg); border-radius: 60% 40%; background-size: 10px 10px; animation: moveWave 15s infinite ease-in-out reverse; }
+        @keyframes moveWave { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-25px) rotate(0deg); } }
+
+        /* --- NAV --- */
+        .top-nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; z-index: 2000; background: rgba(26,26,26,0.95); box-sizing: border-box; border-bottom: 4px solid var(--pop-black); }
+        .social-links a { color: var(--cream); font-size: 18px; text-decoration: none; margin-right: 20px; transition: 0.3s; }
+        .nav-links a { color: var(--cream); text-decoration: none; font-family: 'Lexend'; font-size: 12px; letter-spacing: 2px; font-weight: 700; margin-left: 30px; }
+
+        /* --- HEADER LOGO --- */
+        .project-header { padding: 120px 0 20px; text-align: center; }
+        .logo-container { display: inline-block; width: 180px; }
+        .logo-text-m { font-family: 'Lexend', sans-serif; font-size: 100px; fill: var(--cream); font-weight: 900; filter: drop-shadow(6px 6px 0px var(--pop-black)); }
+        .logo-bar-svg { fill: var(--cream); filter: drop-shadow(4px 4px 0px var(--pop-black)); }
+
+        /* --- GALLERY --- */
+        .section-container { padding: 20px 8% 80px; position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; }
+        .section-header { display: flex; align-items: center; gap: 0; margin-bottom: 50px; }
+        .title-tag { 
+            background: var(--cream); color: var(--pop-black); padding: 12px 40px; 
+            font-family: 'Lexend'; font-weight: 900; font-size: 20px; letter-spacing: 4px; 
+            border: 5px solid var(--pop-black); box-shadow: 8px 8px 0px var(--pop-black);
+            z-index: 2; text-transform: uppercase;
+        }
+        .title-line { flex-grow: 1; height: 6px; background: var(--pop-black); }
+
+        /* --- MASONRY GRID --- */
+        .photo-grid { 
+            column-count: 3;
+            column-gap: 25px;
+            margin-bottom: 60px;
+        }
+        .photo-item { 
+            break-inside: avoid;
+            margin-bottom: 25px;
+            background: var(--pop-black); 
+            border: 6px solid var(--pop-black); 
+            box-shadow: 8px 8px 0px var(--pop-black);
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+        .photo-item:hover { transform: scale(1.02) rotate(1deg); }
+        .photo-item img { width: 100%; height: auto; display: block; }
+
+        /* --- LIGHTBOX --- */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 26, 26, 0.98);
+            display: none; justify-content: center; align-items: center;
+            z-index: 3000; cursor: zoom-out;
+        }
+        #lightbox img { 
+            max-width: 90%; max-height: 85%; 
+            border: 8px solid var(--cream);
+            box-shadow: 15px 15px 0px var(--pop-black);
+        }
+
+        .back-container { text-align: center; }
+        .back-btn { 
+            display: inline-block; padding: 20px 50px; background: var(--pop-black); color: var(--cream); 
+            text-decoration: none; font-family: 'Lexend'; font-weight: 800; border: 3px solid var(--pop-black);
+            transition: 0.3s; box-shadow: 8px 8px 0px var(--cream);
+        }
+
+        @media (max-width: 1000px) { .photo-grid { column-count: 2; } }
+        @media (max-width: 600px) { .photo-grid { column-count: 1; } }
+    </style>
+</head>
+<body>
+
+    <div class="pop-art-bg">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+    </div>
+
+    <nav class="top-nav">
+        <div class="social-links">
+            <a href="https://www.youtube.com/@mathieusemail1265" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mathi2u/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/mathieu-semail-57b387251" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+       
+        <div class="nav-links">
+            <a href="index.html#travaux">RETOUR</a>
+            <a href="index.html#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="project-header">
+        <div class="logo-container">
+            <svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg">
+                <rect x="140" y="10" width="220" height="12" rx="6" class="logo-bar-svg"/>
+                <rect x="100" y="34" width="300" height="12" rx="6" class="logo-bar-svg"/>
+                <rect x="60" y="58" width="380" height="12" rx="6" class="logo-bar-svg"/>
+                <text x="50%" y="195" text-anchor="middle" class="logo-text-m">M</text>
+                <rect x="60" y="240" width="380" height="12" rx="6" class="logo-bar-svg"/>
+                <rect x="100" y="264" width="300" height="12" rx="6" class="logo-bar-svg"/>
+                <rect x="140" y="288" width="220" height="12" rx="6" class="logo-bar-svg"/>
+            </svg>
+        </div>
+    </div>
+
+    <section class="section-container">
+        <div class="section-header">
+            <div class="title-tag">Photographie</div>
+            <div class="title-line"></div>
+        </div>
+
+        <div class="photo-grid" id="gallery">
+            </div>
+
+        <div class="back-container">
+            <a href="index.html#travaux" class="back-btn">RETOUR AUX PROJETS</a>
+        </div>
+    </section>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const photoCount = 28;
+
+        // Génère les 28 photos
+        for (let i = 1; i <= photoCount; i++) {
+            const item = document.createElement('div');
+            item.className = 'photo-item';
+            // On utilise .jpg par défaut, change si tes photos sont en .png ou .webp
+            item.innerHTML = `<img src="photo${i}.jpg" alt="Photo ${i}" onclick="openLightbox(this.src)">`;
+            gallery.appendChild(item);
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
